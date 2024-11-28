@@ -18,10 +18,11 @@ export const createAssignment = (assignment) => {
 };
 
 export const updateAssignment = (aid, assignment) => {
+  const updatedAssignment = { ...assignment, _id: aid };
   assignments = assignments.map((a) =>
-    a._id === aid ? { ...a, ...assignment } : a
+    a._id === aid ? updatedAssignment : a
   );
-  return { status: "OK" };
+  return updatedAssignment;
 };
 
 export const deleteAssignment = (aid) => {

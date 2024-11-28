@@ -25,8 +25,8 @@ function AssignmentRoutes(app) {
 
   app.put("/api/assignments/:aid", (req, res) => {
     const { aid } = req.params;
-    const status = dao.updateAssignment(aid, req.body);
-    res.json(status);
+    const updatedAssignment = dao.updateAssignment(aid, req.body);
+    res.json(updatedAssignment);
   });
 }
 
