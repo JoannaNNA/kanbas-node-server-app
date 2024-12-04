@@ -12,7 +12,6 @@ import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 import mongoose from 'mongoose';
 import "dotenv/config";
 
-
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas"
 mongoose.connect(CONNECTION_STRING);
 
@@ -33,12 +32,12 @@ const sessionOptions = {
     }
   };
   if (process.env.NODE_ENV !== "development") {
-    sessionOptions.proxy = true;
-    sessionOptions.cookie = {
-      sameSite: "none",
-      secure: true,
-      domain: process.env.NODE_SERVER_DOMAIN,
-    };
+    // sessionOptions.proxy = true;
+    // sessionOptions.cookie = {
+    //   sameSite: "none",
+    //   secure: true,
+    //   domain: process.env.NODE_SERVER_DOMAIN,
+    // };
   }
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,7 +50,4 @@ EnrollmentRoutes(app);
 Lab5(app)
 Hello(app)
 AssignmentRoutes(app)
-console.log("========")
-console.log(process.env.PORT)
 app.listen(process.env.PORT || 4000)
-
