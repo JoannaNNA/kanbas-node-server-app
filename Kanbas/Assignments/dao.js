@@ -1,31 +1,18 @@
-import db from "../Database/assignments.js";
-let assignments = db;
+import model from "./model.js";
 
-export const findAllAssignments = () => assignments;
+export const findAllAssignments = () => model.find();
 
-export const findAssignmentsForCourse = (courseId) => {
-  return assignments.filter((assignment) => assignment.course === courseId);
-};
+export const findAssignmentsForCourse = (courseId) => 
+  model.find({ course: courseId });
 
-export const findAssignmentById = (assignmentId) => {
-  return assignments.find((assignment) => assignment._id === assignmentId);
-};
+export const findAssignmentById = (assignmentId) => 
+  model.findById(assignmentId);
 
-export const createAssignment = (assignment) => {
-  const newAssignment = { ...assignment, _id: new Date().getTime().toString() };
-  assignments.push(newAssignment);
-  return newAssignment;
-};
+export const createAssignment = (assignment) => 
+  model.create(assignment);
 
-export const updateAssignment = (aid, assignment) => {
-  const updatedAssignment = { ...assignment, _id: aid };
-  assignments = assignments.map((a) =>
-    a._id === aid ? updatedAssignment : a
-  );
-  return updatedAssignment;
-};
+export const updateAssignment = (aid, assignment) => 
+  model.findByIdAndUpdate(aid, assignment, { new: true });
 
-export const deleteAssignment = (aid) => {
-  assignments = assignments.filter((a) => a._id !== aid);
-  return { status: "OK" };
-};   
+export const deleteAssignment = (aid) => 
+  model.findByIdAndDelete(aid);   

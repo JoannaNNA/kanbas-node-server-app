@@ -6,9 +6,7 @@ const courseSchema = new mongoose.Schema(
     credits: Number,
     description: String,
     image: String,
-    startDate: Date,
-    endDate: Date,
-    faculty: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+   
   },
   { collection: "courses" }
 );
